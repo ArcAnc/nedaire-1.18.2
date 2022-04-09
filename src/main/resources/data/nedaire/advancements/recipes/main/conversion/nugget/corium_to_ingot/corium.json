@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "nedaire:conversion/nugget/corium_to_ingot/corium"
+    ]
+  },
+  "criteria": {
+    "has_nugget_corium": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:nuggets/corium"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "nedaire:conversion/nugget/corium_to_ingot/corium"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_nugget_corium",
+      "has_the_recipe"
+    ]
+  ]
+}

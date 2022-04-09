@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "nedaire:conversion/storage_block/raw/corium_to_raw/corium"
+    ]
+  },
+  "criteria": {
+    "has_storage_block_raw_corium": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "nedaire:storage_block/raw/corium"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "nedaire:conversion/storage_block/raw/corium_to_raw/corium"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_storage_block_raw_corium",
+      "has_the_recipe"
+    ]
+  ]
+}

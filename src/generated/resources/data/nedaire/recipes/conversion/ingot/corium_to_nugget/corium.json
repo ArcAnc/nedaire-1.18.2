@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:ingots/corium"
+    }
+  ],
+  "result": {
+    "item": "nedaire:nugget/corium",
+    "count": 9
+  }
+}

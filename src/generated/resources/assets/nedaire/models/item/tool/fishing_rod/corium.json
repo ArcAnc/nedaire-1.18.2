@@ -1,0 +1,14 @@
+{
+  "parent": "minecraft:item/handheld_rod",
+  "textures": {
+    "layer0": "nedaire:item/tool/fishing_rod/corium"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "minecraft:cast": 1.0
+      },
+      "model": "nedaire:item/tool/fishing_rod/corium_cast"
+    }
+  ]
+}

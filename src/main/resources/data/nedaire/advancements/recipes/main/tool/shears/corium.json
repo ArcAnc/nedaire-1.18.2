@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "nedaire:tool/shears/corium"
+    ]
+  },
+  "criteria": {
+    "has_ingots/corium": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:ingots/corium"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "nedaire:tool/shears/corium"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_ingots/corium",
+      "has_the_recipe"
+    ]
+  ]
+}
