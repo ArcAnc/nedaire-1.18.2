@@ -12,11 +12,14 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.arcanc.nedaire.content.block.BlockInterfaces.IBlockRenderLayer;
+import com.arcanc.nedaire.content.capabilities.vim.CapabilityVim;
 import com.arcanc.nedaire.content.item.ItemInterfaces.ICustomModelProperties;
 import com.arcanc.nedaire.content.item.weapon.ModShieldBase;
 import com.arcanc.nedaire.content.itemGroup.ModItemGroup;
 import com.arcanc.nedaire.content.material.ModMaterial;
 import com.arcanc.nedaire.content.registration.ModRegistration;
+import com.arcanc.nedaire.content.renderer.blockEntity.HolderRenderer;
+import com.arcanc.nedaire.content.renderer.blockEntity.PedestalRenderer;
 import com.arcanc.nedaire.content.renderer.item.shieldRenderer.ShieldTileEntityRenderer;
 import com.arcanc.nedaire.data.ModBlockLootProvider;
 import com.arcanc.nedaire.data.ModBlockStatesProvider;
@@ -29,11 +32,13 @@ import com.arcanc.nedaire.util.database.ModDatabase;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
+import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.world.inventory.InventoryMenu;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraftforge.client.event.RegisterClientReloadListenersEvent;
 import net.minecraftforge.client.event.TextureStitchEvent;
+import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
@@ -72,6 +77,7 @@ public class Nedaire
 	    modEventBus.addListener(this :: clientSetup);
 	    modEventBus.addListener(this :: clientTextureStitch);
 	    modEventBus.addListener(this :: registerReloadListeners);
+	    modEventBus.addListener(this :: registerCapability);
 	    
 	    modEventBus.addListener(this :: gatherData);
 
@@ -79,8 +85,13 @@ public class Nedaire
 	
 	private void serverSetup(final FMLCommonSetupEvent event)
     {
-//    	CapabilitiesInit.initCapabilities();
+
     }
+
+	private void registerCapability(final RegisterCapabilitiesEvent event )
+	{
+		CapabilityVim.register(event);
+	}
 	
 	private void clientSetup (final FMLClientSetupEvent event)
 	{
@@ -89,20 +100,17 @@ public class Nedaire
 			registerBlocksRenderers();
 			
 			registerModelsProperties();
-		});
-		
-	
-/*		ScreenManager.registerFactory(NedaireTileEntities.GRINDER_CONTAINER.get(), NGrinderScreen :: new);
-		ScreenManager.registerFactory(NedaireTileEntities.GENERATOR_SOLAR_CONTAINER.get(), NGeneratorScreen :: new);
-*/		
 
-/*		event.enqueueWork(() ->
-		{
-			registerTileEntityRenderers();
+			registerBlockEntityRenderers();
 		});
-*/	
 	}
-
+	
+	private void registerBlockEntityRenderers() 
+	{
+		BlockEntityRenderers.register(ModRegistration.RegisterBlockEntities.BE_PEDESTAL.get(), PedestalRenderer :: new);	
+		BlockEntityRenderers.register(ModRegistration.RegisterBlockEntities.BE_HOLDER.get(), HolderRenderer :: new);	
+	}
+	
 	private void registerBlocksRenderers()
 	{
 		ModRegistration.RegisterBlocks.BLOCKS.getEntries().

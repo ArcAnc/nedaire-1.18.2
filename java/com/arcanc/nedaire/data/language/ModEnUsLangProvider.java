@@ -72,6 +72,7 @@ public class ModEnUsLangProvider extends LanguageProvider
 		add(ModRegistration.RegisterBlocks.SKYSTONE.get().asItem(), StringHelper.capitalize(ModDatabase.Blocks.Names.SKYSTONE));
 		
 		add(ModRegistration.RegisterBlocks.PEDESTAL.get().asItem(), StringHelper.capitalize(ModDatabase.Blocks.BlockEntities.Names.PEDESTAL));
+		add(ModRegistration.RegisterBlocks.HOLDER.get().asItem(), StringHelper.capitalize(ModDatabase.Blocks.BlockEntities.Names.HOLDER));
 	}
 	
 	@Override

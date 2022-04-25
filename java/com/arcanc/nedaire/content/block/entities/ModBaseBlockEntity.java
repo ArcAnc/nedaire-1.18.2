@@ -92,7 +92,10 @@ public abstract class ModBaseBlockEntity extends BlockEntity
 	protected void markDirty()
 	{
 		if (this.level != null && this.level.hasChunkAt(getBlockPos()))
-			this.level.getChunkAt(getBlockPos()).setUnsaved(true);
+		{
+			level.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), 2);
+			this.level.getChunkAt(getBlockPos()).setUnsaved(true);			
+		}
 	}
 	
 	/**
@@ -102,7 +105,7 @@ public abstract class ModBaseBlockEntity extends BlockEntity
 	@Override
 	public void setChanged()
 	{
-		if(this.level!=null)
+		if(this.level != null)
 		{
 			markDirty();
 			BlockState state = getBlockState();

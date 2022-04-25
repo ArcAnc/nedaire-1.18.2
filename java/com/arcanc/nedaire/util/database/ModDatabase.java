@@ -94,6 +94,7 @@ public class ModDatabase
 			public static class Names
 			{
 				public static final String PEDESTAL = "pedestal";
+				public static final String HOLDER = "holder";
 			}
 			
 			public static class TagAddress
@@ -135,6 +136,16 @@ public class ModDatabase
 			{
 				public static final String SLOT_LIMIT = "slot_limit";
 			}
+		}
+		
+		public static class Vim
+		{
+			public static final String TAG_LOCATION = StringHelper.getStrLocFStr("vim");
+			
+			public static final String ENERGY = "vim";
+			public static final String MAX_ENERGY = "max_vim";
+			public static final String INPUT = "input";
+			public static final String EXTRACT = "extracting";
 		}
 	}
 

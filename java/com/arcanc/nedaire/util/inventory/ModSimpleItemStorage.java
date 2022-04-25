@@ -95,7 +95,14 @@ public class ModSimpleItemStorage implements IItemHandler, INBTSerializable<Comp
 			return stack;
 		validateSlotIndex(slot);
 		
-		return items.get(slot).insert(stack, simulate);
+		ItemStack retStack = items.get(slot).insert(stack, simulate);
+		
+		if (!simulate)
+		{
+			onInventoryChange(slot);
+		}
+		
+		return retStack;
 	}
 
 	@Override
@@ -104,7 +111,14 @@ public class ModSimpleItemStorage implements IItemHandler, INBTSerializable<Comp
 		if (amount == 0)
 			return ItemStack.EMPTY;
 		validateSlotIndex(slot);
-		return items.get(slot).extract(amount, simulate);
+		
+		ItemStack retStack = items.get(slot).extract(amount, simulate);
+		
+		if (!simulate)
+		{
+			onInventoryChange(slot);
+		}
+		return retStack;
 	}
 
 	@Override

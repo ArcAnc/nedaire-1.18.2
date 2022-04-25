@@ -32,8 +32,10 @@ import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.entries.LootPoolEntryContainer;
 import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
 import net.minecraft.world.level.storage.loot.functions.ApplyExplosionDecay;
+import net.minecraft.world.level.storage.loot.functions.CopyNameFunction;
 import net.minecraft.world.level.storage.loot.functions.FunctionUserBuilder;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
+import net.minecraft.world.level.storage.loot.predicates.ConditionUserBuilder;
 import net.minecraft.world.level.storage.loot.predicates.ExplosionCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraft.world.level.storage.loot.predicates.MatchTool;
@@ -94,8 +96,8 @@ public class ModBlockLootProvider extends ModLootProvider
 		
 		registerSelfDrop(ModRegistration.RegisterBlocks.SKYSTONE.get());
 		
-		registerSelfDrop(ModRegistration.RegisterBlocks.PEDESTAL.get());
-
+		register(ModRegistration.RegisterBlocks.PEDESTAL.get(), createNameableBlockEntityTable(ModRegistration.RegisterBlocks.PEDESTAL.get()));
+		register(ModRegistration.RegisterBlocks.HOLDER.get(), createNameableBlockEntityTable(ModRegistration.RegisterBlocks.HOLDER.get()));
 	}
 	
 	private void registerSelfDrop(Block block)
@@ -151,10 +153,20 @@ public class ModBlockLootProvider extends ModLootProvider
 		return new ResourceLocation(in.getNamespace(), "blocks/"+in.getPath());
 	}
 	
+	private static LootTable.Builder createNameableBlockEntityTable(Block p_124293_) 
+	{
+		return LootTable.lootTable().withPool(applyExplosionCondition(p_124293_, LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).add(LootItem.lootTableItem(p_124293_).apply(CopyNameFunction.copyName(CopyNameFunction.NameSource.BLOCK_ENTITY)))));
+	}
+	
 	private <T> T applyExplosionDecay(ItemLike p_124132_, FunctionUserBuilder<T> p_124133_) 
 	{
 		return (T)(!EXPLOSION_RESISTANT.contains(p_124132_.asItem()) ? p_124133_.apply(ApplyExplosionDecay.explosionDecay()) : p_124133_.unwrap());
     }
+	
+	private static <T> T applyExplosionCondition(ItemLike p_124135_, ConditionUserBuilder<T> p_124136_) 
+	{
+		return (T)(!EXPLOSION_RESISTANT.contains(p_124135_.asItem()) ? p_124136_.when(ExplosionCondition.survivesExplosion()) : p_124136_.unwrap());
+	}
 	
 	@Override
 	public String getName() 

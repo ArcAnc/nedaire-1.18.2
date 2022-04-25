@@ -9,11 +9,14 @@
 package com.arcanc.nedaire.content.registration;
 
 import java.util.function.BiFunction;
+import java.util.stream.Stream;
 
 import com.arcanc.nedaire.Nedaire;
 import com.arcanc.nedaire.content.block.ModBaseBlock;
+import com.arcanc.nedaire.content.block.ModBlockHolder;
 import com.arcanc.nedaire.content.block.ModBlockPedestal;
 import com.arcanc.nedaire.content.block.ModTileProviderBlock;
+import com.arcanc.nedaire.content.block.entities.ModBEHolder;
 import com.arcanc.nedaire.content.block.entities.ModBEPedestal;
 import com.arcanc.nedaire.content.item.ModBlockItemBase;
 import com.arcanc.nedaire.content.item.tool.ModHammer;
@@ -74,7 +77,13 @@ public class ModRegistration
 				ModDatabase.Blocks.BlockEntities.Names.PEDESTAL, 
 				() -> new ModBlockPedestal(
 						baseMachineProps.get(),
-						ModBEPedestal :: new));
+						ModBEPedestal :: new));		
+		
+		public static final RegistryObject<ModBlockHolder> HOLDER = registerBlockWithEntity(
+				ModDatabase.Blocks.BlockEntities.Names.HOLDER, 
+				() -> new ModBlockHolder(
+						baseMachineProps.get(),
+						ModBEHolder :: new));
 		
 		private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block, boolean isItemRequired)
 		{
@@ -99,11 +108,7 @@ public class ModRegistration
 		
 		private static <T extends Block> RegistryObject<T> registerBlockWithEntity(String name, Supplier<T> block)
 		{
-			Nedaire.getLogger().warn("Registering block");
-			
 			RegistryObject<T> b = BLOCKS.register(name, block);
-			
-			Nedaire.getLogger().warn("Is block present: " + b.isPresent() + " named: " + b.getId().getPath());
 			
 			RegisterItems.ITEMS.register(b.getId().getPath(), ()-> new ModBlockItemBase(b.get(), RegisterItems.baseProps.get()));
 			
@@ -143,11 +148,17 @@ public class ModRegistration
 		public static final RegistryObject<BlockEntityType<ModBEPedestal>> BE_PEDESTAL = register(
 				ModDatabase.Blocks.BlockEntities.Names.PEDESTAL, 
 				ModBEPedestal :: new, 
-				RegisterBlocks.PEDESTAL.get());
+				RegisterBlocks.PEDESTAL);
+
+		public static final RegistryObject<BlockEntityType<ModBEHolder>> BE_HOLDER = register(
+				ModDatabase.Blocks.BlockEntities.Names.HOLDER, 
+				ModBEHolder :: new, 
+				RegisterBlocks.HOLDER);
 		
-		private static <T extends BlockEntity> RegistryObject<BlockEntityType<T>> register (String name, BlockEntityType.BlockEntitySupplier<T> blockEntity, Block... blocks)
+		@SafeVarargs
+		private static <T extends BlockEntity, R extends Block> RegistryObject<BlockEntityType<T>> register (String name, BlockEntityType.BlockEntitySupplier<T> blockEntity, RegistryObject<R>... blocks)
 		{
-			return BLOCK_ENTITIES.register(name, () -> BlockEntityType.Builder.of(blockEntity, blocks).build(null));
+			return BLOCK_ENTITIES.register(name, () -> BlockEntityType.Builder.of(blockEntity, Stream.of(blocks).map(RegistryObject :: get).toArray(Block[] :: new)).build(null));
 		}
 	}
 	
@@ -159,7 +170,9 @@ public class ModRegistration
 
 		public static class Types
 		{
-			
+			/**
+			 * TODO: add recipe types here
+			 */
 		}
 	
 	}

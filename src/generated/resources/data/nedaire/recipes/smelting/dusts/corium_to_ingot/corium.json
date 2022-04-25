@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:smelting",
-  "ingredient": {
-    "tag": "forge:dusts/corium"
-  },
-  "result": "nedaire:ingot/corium",
-  "experience": 0.0,
-  "cookingtime": 200
-}

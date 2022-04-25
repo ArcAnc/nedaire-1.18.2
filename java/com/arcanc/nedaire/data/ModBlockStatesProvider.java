@@ -48,6 +48,7 @@ public class ModBlockStatesProvider extends BlockStateProvider
 		registerSimpleBlock(ModRegistration.RegisterBlocks.SKYSTONE.get());
 		
 		registerPedestal(ModRegistration.RegisterBlocks.PEDESTAL.get());
+		registerHolder(ModRegistration.RegisterBlocks.HOLDER.get());
 	}
 	
 	private void registerSimpleBlock (Block block)
@@ -188,6 +189,312 @@ public class ModBlockStatesProvider extends BlockStateProvider
 			parent(model);
 	}
 
+	private void registerHolder(Block block) 
+	{
+		/*TODO: add uvs here!*/
+		
+		ModelFile model = models().
+				withExistingParent(blockPrefix(name(block)), mcLoc("block")).
+				texture("main", StringHelper.getLocFStr(blockPrefix(ModDatabase.Blocks.Names.SKYSTONE))).
+				texture("patricle", StringHelper.getLocFStr(blockPrefix(ModDatabase.Blocks.Names.SKYSTONE))).
+				element().
+					from(0,10,0).
+					to(16,16,16).
+						face(Direction.NORTH).
+							texture("#main").
+							cullface(Direction.NORTH).
+							end().
+						face(Direction.EAST).
+							texture("#main").
+							cullface(Direction.EAST).
+							end().
+						face(Direction.SOUTH).
+							texture("#main").
+							cullface(Direction.SOUTH).
+							end().
+						face(Direction.WEST).
+							texture("#main").
+							cullface(Direction.WEST).
+							end().
+						face(Direction.UP).
+							texture("#main").
+							cullface(Direction.UP).
+							end().
+						face(Direction.DOWN).
+							texture("#main").
+							cullface(Direction.DOWN).
+							end().
+				end().
+				element().
+					from(7.5f, 10.75f, 7.5f).
+					to(14.5f, 11.75f, 8.5f).
+						rotation().
+							angle(-45f).
+							axis(Direction.Axis.Z).
+							origin(7, 9, 8).
+							end().
+						face(Direction.NORTH).
+							texture("#main").
+							cullface(Direction.NORTH).
+							end().
+						face(Direction.EAST).
+							texture("#main").
+							cullface(Direction.EAST).
+							end().
+						face(Direction.SOUTH).
+							texture("#main").
+							cullface(Direction.SOUTH).
+							end().
+						face(Direction.WEST).
+							texture("#main").
+							cullface(Direction.WEST).
+							end().
+						face(Direction.UP).
+							texture("#main").
+							cullface(Direction.UP).
+							end().
+						face(Direction.DOWN).
+							texture("#main").
+							cullface(Direction.DOWN).
+							end().
+				end().
+				element().
+					from(2.5f, 8.25f, 7.5f).
+					to(9.5f, 9.25f, 8.5f).
+						rotation().
+							angle(45f).
+							axis(Direction.Axis.Z).
+							origin(7, 9, 8).
+							end().
+						face(Direction.NORTH).
+							texture("#main").
+							cullface(Direction.NORTH).
+							end().
+						face(Direction.EAST).
+							texture("#main").
+							cullface(Direction.EAST).
+							end().
+						face(Direction.SOUTH).
+							texture("#main").
+							cullface(Direction.SOUTH).
+							end().
+						face(Direction.WEST).
+							texture("#main").
+							cullface(Direction.WEST).
+							end().
+						face(Direction.UP).
+							texture("#main").
+							cullface(Direction.UP).
+							end().
+						face(Direction.DOWN).
+							texture("#main").
+							cullface(Direction.DOWN).
+							end().
+				end().
+				element().
+					from(8.5f, 9.75f, 1.75f).
+					to(9.5f, 10.75f, 8.75f).
+						rotation().
+							angle(-45f).
+							axis(Direction.Axis.X).
+							origin(7, 9, 8).
+							end().
+						face(Direction.NORTH).
+							texture("#main").
+							cullface(Direction.NORTH).
+							end().
+						face(Direction.EAST).
+							texture("#main").
+							cullface(Direction.EAST).
+							end().
+						face(Direction.SOUTH).
+							texture("#main").
+							cullface(Direction.SOUTH).
+							end().
+						face(Direction.WEST).
+							texture("#main").
+							cullface(Direction.WEST).
+							end().
+						face(Direction.UP).
+							texture("#main").
+							cullface(Direction.UP).
+							end().
+						face(Direction.DOWN).
+							texture("#main").
+							cullface(Direction.DOWN).
+							end().
+				end().
+				element().
+					from(8.5f, 3f, 8.25f).
+					to(9.5f, 10.0f, 9.25f).
+						rotation().
+							angle(-45f).
+							axis(Direction.Axis.X).
+							origin(7, 9, 8).
+							end().
+						face(Direction.NORTH).
+							texture("#main").
+							cullface(Direction.NORTH).
+							end().
+						face(Direction.EAST).
+							texture("#main").
+							cullface(Direction.EAST).
+							end().
+						face(Direction.SOUTH).
+							texture("#main").
+							cullface(Direction.SOUTH).
+							end().
+						face(Direction.WEST).
+							texture("#main").
+							cullface(Direction.WEST).
+							end().
+						face(Direction.UP).
+							texture("#main").
+							cullface(Direction.UP).
+							end().
+						face(Direction.DOWN).
+							texture("#main").
+							cullface(Direction.DOWN).
+							end().
+				end().
+				element().
+					from(-1.67f, 5.85f, 7.5f).
+					to(1.33f, 6.85f, 8.5f).
+						rotation().
+							angle(-45f).
+							axis(Direction.Axis.Z).
+							origin(0, 0, 0).
+							end().
+						face(Direction.NORTH).
+							texture("#main").
+							cullface(Direction.NORTH).
+							end().
+						face(Direction.EAST).
+							texture("#main").
+							cullface(Direction.EAST).
+							end().
+						face(Direction.SOUTH).
+							texture("#main").
+							cullface(Direction.SOUTH).
+							end().
+						face(Direction.WEST).
+							texture("#main").
+							cullface(Direction.WEST).
+							end().
+						face(Direction.UP).
+							texture("#main").
+							cullface(Direction.UP).
+							end().
+						face(Direction.DOWN).
+							texture("#main").
+							cullface(Direction.DOWN).
+							end().
+				end().
+				element().
+					from(5.85f, 11.07f, 7.5f).
+					to(6.85f, 14.07f, 8.5f).
+						rotation().
+							angle(-45f).
+							axis(Direction.Axis.Z).
+							origin(0, 0, 0).
+							end().
+						face(Direction.NORTH).
+							texture("#main").
+							cullface(Direction.NORTH).
+							end().
+						face(Direction.EAST).
+							texture("#main").
+							cullface(Direction.EAST).
+							end().
+						face(Direction.SOUTH).
+							texture("#main").
+							cullface(Direction.SOUTH).
+							end().
+						face(Direction.WEST).
+							texture("#main").
+							cullface(Direction.WEST).
+							end().
+						face(Direction.UP).
+							texture("#main").
+							cullface(Direction.UP).
+							end().
+						face(Direction.DOWN).
+							texture("#main").
+							cullface(Direction.DOWN).
+							end().
+				end().
+				element().
+					from(8.5f, 10.27f, 5.25f).
+					to(9.5f, 13.27f, 6.25f).
+						rotation().
+							angle(45f).
+							axis(Direction.Axis.X).
+							origin(0, 0, 0).
+							end().
+						face(Direction.NORTH).
+							texture("#main").
+							cullface(Direction.NORTH).
+							end().
+						face(Direction.EAST).
+							texture("#main").
+							cullface(Direction.EAST).
+							end().
+						face(Direction.SOUTH).
+							texture("#main").
+							cullface(Direction.SOUTH).
+							end().
+						face(Direction.WEST).
+							texture("#main").
+							cullface(Direction.WEST).
+							end().
+						face(Direction.UP).
+							texture("#main").
+							cullface(Direction.UP).
+							end().
+						face(Direction.DOWN).
+							texture("#main").
+							cullface(Direction.DOWN).
+							end().
+				end().
+				element().
+					from(8.5f, -0.54f, 4.77f).
+					to(9.5f, 2.46f, 5.77f).
+						rotation().
+							angle(-45f).
+							axis(Direction.Axis.X).
+							origin(0, 0, 0).
+							end().
+						face(Direction.NORTH).
+							texture("#main").
+							cullface(Direction.NORTH).
+							end().
+						face(Direction.EAST).
+							texture("#main").
+							cullface(Direction.EAST).
+							end().
+						face(Direction.SOUTH).
+							texture("#main").
+							cullface(Direction.SOUTH).
+							end().
+						face(Direction.WEST).
+							texture("#main").
+							cullface(Direction.WEST).
+							end().
+						face(Direction.UP).
+							texture("#main").
+							cullface(Direction.UP).
+							end().
+						face(Direction.DOWN).
+							texture("#main").
+							cullface(Direction.DOWN).
+							end().
+				end();
+
+		getVariantBuilder(block).partialState().addModels(new ConfiguredModel(model));
+		
+		itemModels().getBuilder(itemPrefix(name(block))).
+			parent(model);
+	}
 	
 	private String itemPrefix(String str)
 	{

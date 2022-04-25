@@ -1,11 +1,13 @@
 5934d02e36068f4e92a05c56147edbb7c1030c90 assets/nedaire/blockstates/deepslate/corium.json
+ffbf1847d3563debb4cfc5c6ca067f680c15d567 assets/nedaire/blockstates/holder.json
 5f95afc9157ef9345413bc9fdd62901148ac9df2 assets/nedaire/blockstates/ore/corium.json
 c0fe3104b0c7d78bbdac6d23f593e507a63e1000 assets/nedaire/blockstates/pedestal.json
 f6aca5ebd6c4ce1858f1a80bb1392612eb87d024 assets/nedaire/blockstates/skystone.json
 146116491c764c689c5a7e7503ac9dcf2744cf2c assets/nedaire/blockstates/storage_block/corium.json
 0363afa618218ef63f44bee61f9064553fe6f826 assets/nedaire/blockstates/storage_block/raw/corium.json
-559febff79eb016fddd1daa7eb2ae1256e275c21 assets/nedaire/lang/en_us.json
+49fff50099af4f50342c8144cc9ae27ffdd23249 assets/nedaire/lang/en_us.json
 5458d30a75095d3f592c44e6cfc6fcdc7e475aeb assets/nedaire/models/block/deepslate/corium.json
+96444b22efc8e55a77d228c0cbefc8106f4df0ce assets/nedaire/models/block/holder.json
 5ac9ec2f7cdc4dc0da3127ccaed2ffb9a9f8ab80 assets/nedaire/models/block/ore/corium.json
 f9579f6ff2c18b904cd5bd8ef7e59b47ff489a6b assets/nedaire/models/block/pedestal.json
 85380ebc92c6b849a9bc84d4380df43b090be12c assets/nedaire/models/block/skystone.json
@@ -18,6 +20,7 @@ a784f181b2aa0c8f7e9b3f09843063a44a3c04b1 assets/nedaire/models/item/armor/player
 76934ba53b362deefd9a380123688e9d21b570ab assets/nedaire/models/item/armor/player/legs/corium.json
 862d6f71fe42e689fd69755e58d2e76ab497118d assets/nedaire/models/item/deepslate/corium.json
 6227d2b42bbbd91059ed8e63fd2e01aa18f1a32c assets/nedaire/models/item/dust/corium.json
+aa27d29825138cf9116ffced5845441cfceab837 assets/nedaire/models/item/holder.json
 4b30b8ce002e330b477cac4c3a0b91767ddd5669 assets/nedaire/models/item/ingot/corium.json
 063a7b613a52b0000fe535ea5e78a49a1c73bc0d assets/nedaire/models/item/nugget/corium.json
 96a9e755c0a4c106baa6a144836c8a55e1579984 assets/nedaire/models/item/ore/corium.json
@@ -64,10 +67,10 @@ e31008188367cc789507aa77df778231621f6565 data/forge/tags/items/dusts/corium.json
 97090ef0feb225d27a250efe82c7742755834d3b data/forge/tags/items/storage_blocks.json
 37dfc8314baee204414a558571121e99e01f8516 data/forge/tags/items/storage_blocks/corium.json
 a57dd514ec5851fca2211a5d2298802860c39ba4 data/forge/tags/items/wrenches.json
-3a42a5401155a0606e9067e76cbd2eaa4a755583 data/minecraft/tags/blocks/mineable/pickaxe.json
+7280f4022a8b03de471f54f12966ad21bb80e97a data/minecraft/tags/blocks/mineable/pickaxe.json
 0d341adc3a9dd1274b11126b9c542c6bac100393 data/minecraft/tags/blocks/needs_diamond_tool.json
 97090ef0feb225d27a250efe82c7742755834d3b data/minecraft/tags/blocks/needs_iron_tool.json
-1bea05c14af0244eb5e0c96a6774b0db1a45b2e4 data/minecraft/tags/blocks/needs_stone_tool.json
+44e07c815e2ea791b1cf00ac7201b070693fad75 data/minecraft/tags/blocks/needs_stone_tool.json
 2d0f9263d4343fc62066a78e20b1bfdcd5dbcd1c data/nedaire/advancements/recipes/main/armor/horse/corium.json
 edf557896bd3a14c788708cb3589b65e194944cd data/nedaire/advancements/recipes/main/armor/player/chest/corium.json
 1572cf6544b3f7b05516996e9d29a9529fcf09db data/nedaire/advancements/recipes/main/armor/player/feet/corium.json
@@ -96,8 +99,9 @@ cd14967a10d0d10282dd707da19085020cbe0595 data/nedaire/advancements/recipes/main/
 8ff1e3f1c4131249b87355ceb2a450f3efd0c431 data/nedaire/advancements/recipes/main/weapon/shield/corium.json
 9ae0a5057e7dcdc8bf3ef59d73874a5c501422d9 data/nedaire/advancements/recipes/main/weapon/sword/corium.json
 d5408335858ec830651dbf3876f44e93b6abe9de data/nedaire/loot_tables/blocks/deepslate/corium.json
+a505c19ffec32995e15923e385a64dcf7aa38a70 data/nedaire/loot_tables/blocks/holder.json
 b2fd63fecddb080a63bc9e81e78d4abd36f904f6 data/nedaire/loot_tables/blocks/ore/corium.json
-19c2917c9c5c98649d2db8a43b09b8ccdab2e314 data/nedaire/loot_tables/blocks/pedestal.json
+94b02e22cd7f628833c06601df8fee290fd52a8a data/nedaire/loot_tables/blocks/pedestal.json
 77348c4872f6b35507825d30cf0f00c2b3f1c853 data/nedaire/loot_tables/blocks/skystone.json
 feb7c5f240a9642c0536e6c175aafd9865391f59 data/nedaire/loot_tables/blocks/storage_block/corium.json
 c53d5fc836b6205e751cb56fbeaf431b21bac6ac data/nedaire/loot_tables/blocks/storage_block/raw/corium.json

@@ -43,8 +43,8 @@ public class ModBlockTagsProvider extends BlockTagsProvider
 			tag(BlockTags.NEEDS_DIAMOND_TOOL).addTag(ModTags.Blocks.MATERIALS.get(mat.getName()).getOre());
 		}
 		
-		tag(BlockTags.MINEABLE_WITH_PICKAXE).add(ModRegistration.RegisterBlocks.SKYSTONE.get()).add(ModRegistration.RegisterBlocks.PEDESTAL.get());
-		tag(BlockTags.NEEDS_STONE_TOOL).add(ModRegistration.RegisterBlocks.SKYSTONE.get()).add(ModRegistration.RegisterBlocks.PEDESTAL.get());
+		tag(BlockTags.MINEABLE_WITH_PICKAXE).add(ModRegistration.RegisterBlocks.SKYSTONE.get()).add(ModRegistration.RegisterBlocks.PEDESTAL.get()).add(ModRegistration.RegisterBlocks.HOLDER.get());
+		tag(BlockTags.NEEDS_STONE_TOOL).add(ModRegistration.RegisterBlocks.SKYSTONE.get()).add(ModRegistration.RegisterBlocks.PEDESTAL.get()).add(ModRegistration.RegisterBlocks.HOLDER.get());
 	}
 	
 	@Override

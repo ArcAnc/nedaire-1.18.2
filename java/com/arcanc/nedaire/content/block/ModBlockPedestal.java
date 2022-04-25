@@ -12,8 +12,10 @@ import java.util.function.BiFunction;
 
 import com.arcanc.nedaire.content.block.entities.ModBEPedestal;
 import com.arcanc.nedaire.util.helpers.BlockHelper;
+import com.arcanc.nedaire.util.helpers.ItemHelper;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -44,15 +46,32 @@ public class ModBlockPedestal extends ModTileProviderBlock<ModBEPedestal>
 		if (!world.isClientSide() && hand == InteractionHand.MAIN_HAND)
 		{
 			ItemStack stack = player.getItemInHand(hand);
-			ModBEPedestal tile = BlockHelper.castTileEntity(world, pos, ModBEPedestal.class);
-			if (tile != null)
+			BlockHelper.castTileEntity(world, pos, ModBEPedestal.class).ifPresent( tile -> 
 			{
 				tile.usePedestal(player, stack);
-				
-				return InteractionResult.CONSUME;
-			}
+			});
+			return InteractionResult.CONSUME;
 		}
 		return InteractionResult.SUCCESS;
+	}
+	
+	@Override
+	public void onRemove(BlockState oldState, Level level, BlockPos pos, BlockState newState, boolean update) 
+	{
+		if (!level.isClientSide && !oldState.is(newState.getBlock())) 
+		{
+			BlockHelper.castTileEntity(BlockHelper.getTileEntity(level, pos), ModBEPedestal.class).ifPresent(ent -> 
+			{
+				ItemHelper.getItemHandler(ent).ifPresent(handler -> 
+				{
+					for (int q = 0; q < handler.getSlots() ; q++)
+					{
+						Containers.dropItemStack(level, pos.getX() + 0.5d, pos.getY() + 0.5d, pos.getZ() + 0.5d, handler.getStackInSlot(q));
+					}
+				});
+			});
+		super.onRemove(oldState, level, pos, newState, update);
+		}
 	}
 	
 	@Override

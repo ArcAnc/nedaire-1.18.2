@@ -52,15 +52,15 @@ public class ModBEPedestal extends ModBaseBlockEntity implements IInventoryCallb
 	{
 		if (!player.isCrouching())
 		{
-			if (ItemHelper.hasEmptySpace(itemHandler))
+			if (!stack.isEmpty() && ItemHelper.hasEmptySpace(itemHandler))
 			{
-				return addItem(player, stack);
+				return addItems(player, stack);
 			}
 		}
 		return removeItem(player, stack);
 	}
 	
-	private ItemStack addItem (Player player, ItemStack stack)
+	private ItemStack addItems (Player player, ItemStack stack)
 	{
 		if (player != null && !getLevel().isClientSide())
 		{
@@ -85,10 +85,10 @@ public class ModBEPedestal extends ModBaseBlockEntity implements IInventoryCallb
 		ItemStack newStack = inv.insertItem(slot, stack, false);
 		if (!stack.equals(newStack, true))
 		{
-			markDirty();
 			if (player.isCreative())
 			{
-				return stack;
+				newStack.setCount(stack.getCount());
+				return newStack;
 			}
 			else
 			{
@@ -103,14 +103,14 @@ public class ModBEPedestal extends ModBaseBlockEntity implements IInventoryCallb
 	{
 		if (player != null && !getLevel().isClientSide())
 		{
-			for (int q = inv.getSlots(); q > -1; --q)
+			for (int q = inv.getSlots()-1; q > -1; --q)
 			{
 				ItemStack extracted = inv.extractItem(q, inv.getSlotLimit(q), false);
 				
 				if (!extracted.isEmpty())
 				{
-					markDirty();
 					player.addItem(extracted);
+					break;
 				}
 			}
 		}
@@ -128,7 +128,6 @@ public class ModBEPedestal extends ModBaseBlockEntity implements IInventoryCallb
 	public void writeCustomTag(CompoundTag tag, boolean descPacket) 
 	{
 		tag.put(ModDatabase.Capabilities.ItemHandler.TAG_LOCATION, inv.serializeNBT());
-
 	}
 	
 	@Override
@@ -146,6 +145,12 @@ public class ModBEPedestal extends ModBaseBlockEntity implements IInventoryCallb
 			return itemHandler.cast();
 		}
 		return super.getCapability(cap, side);
+	}
+	
+	@Override
+	public void onInventoryChange(int slot) 
+	{
+		setChanged();
 	}
 
 }

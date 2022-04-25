@@ -8,6 +8,9 @@
  */
 package com.arcanc.nedaire.util.helpers;
 
+
+import java.util.Optional;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -24,22 +27,23 @@ public class BlockHelper
 	}
 	
 	@SuppressWarnings("unchecked")
-	public static <T> T castTileEntity(BlockEntity tile, Class<T> to)
+	public static <T> Optional<T> castTileEntity(BlockEntity tile, Class<T> to)
 	{
 		if (tile != null && to.isAssignableFrom(tile.getClass()))
 		{
-			return (T) tile;
+			T entity = (T) tile;
+			return Optional.of(entity);
 		}
-		return null;
+		return Optional.empty();
 	}
 	
-	public static <T> T castTileEntity(Level world, BlockPos pos, Class<T> to)
+	public static <T> Optional<T> castTileEntity(Level world, BlockPos pos, Class<T> to)
 	{
 		if (world != null && pos != null)
 		{
 			BlockEntity tile = getTileEntity(world, pos);
 			return castTileEntity(tile, to);
 		}
-		return null;
+		return Optional.empty();
 	}
 }
