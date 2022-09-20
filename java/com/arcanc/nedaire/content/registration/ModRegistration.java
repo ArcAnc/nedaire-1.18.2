@@ -19,6 +19,7 @@ import com.arcanc.nedaire.content.block.ModTileProviderBlock;
 import com.arcanc.nedaire.content.block.entities.ModBEHolder;
 import com.arcanc.nedaire.content.block.entities.ModBEPedestal;
 import com.arcanc.nedaire.content.item.ModBlockItemBase;
+import com.arcanc.nedaire.content.item.gem.GemItem;
 import com.arcanc.nedaire.content.item.tool.ModHammer;
 import com.arcanc.nedaire.content.material.ModMaterial;
 import com.arcanc.nedaire.content.material.ModMaterial.ModMaterialProperties;
@@ -57,6 +58,8 @@ public class ModRegistration
 						ModDatabase.Items.Names.HAMMER, 
 						ModDatabase.Items.Names.TOOL), 
 				() -> new ModHammer(baseProps.get()));
+	
+		public static final RegistryObject<Item> GEM = ITEMS.register("gem", () -> new GemItem(baseProps.get()));
 	}
 	
 	public static class RegisterBlocks

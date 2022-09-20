@@ -15,7 +15,7 @@ import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
 
 public class CapabilityVim 
 {
-    public static final Capability<IVim> VIM = CapabilityManager.get(new CapabilityToken<>(){});;
+    public static final Capability<IVim> VIM = CapabilityManager.get(new CapabilityToken<>(){});
 
     public static void register(RegisterCapabilitiesEvent event)
     {

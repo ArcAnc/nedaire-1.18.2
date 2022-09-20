@@ -8,12 +8,17 @@
  */
 package com.arcanc.nedaire;
 
+import java.awt.Color;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.arcanc.nedaire.content.block.BlockInterfaces.IBlockRenderLayer;
 import com.arcanc.nedaire.content.capabilities.vim.CapabilityVim;
+import com.arcanc.nedaire.content.container.ModSlot;
 import com.arcanc.nedaire.content.item.ItemInterfaces.ICustomModelProperties;
+import com.arcanc.nedaire.content.item.gem.GemEffects;
+import com.arcanc.nedaire.content.item.gem.GemItem;
 import com.arcanc.nedaire.content.item.weapon.ModShieldBase;
 import com.arcanc.nedaire.content.itemGroup.ModItemGroup;
 import com.arcanc.nedaire.content.material.ModMaterial;
@@ -36,6 +41,8 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.world.inventory.InventoryMenu;
 import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.alchemy.PotionUtils;
+import net.minecraftforge.client.event.ColorHandlerEvent;
 import net.minecraftforge.client.event.RegisterClientReloadListenersEvent;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
@@ -76,11 +83,14 @@ public class Nedaire
 	    modEventBus.addListener(this :: serverSetup);
 	    modEventBus.addListener(this :: clientSetup);
 	    modEventBus.addListener(this :: clientTextureStitch);
+	    modEventBus.addListener(this :: registerItemColors);
 	    modEventBus.addListener(this :: registerReloadListeners);
 	    modEventBus.addListener(this :: registerCapability);
 	    
 	    modEventBus.addListener(this :: gatherData);
-
+	    
+	    GemEffects.effectMap.putIfAbsent(GemEffects.HEALTH.getColor(), GemEffects.HEALTH);
+	    GemEffects.effectMap.putIfAbsent(GemEffects.REGENERATION.getColor(), GemEffects.REGENERATION);
 	}
 	
 	private void serverSetup(final FMLCommonSetupEvent event)
@@ -138,7 +148,7 @@ public class Nedaire
 			}
 		});
 	}
-
+	
 	private void registerReloadListeners(final RegisterClientReloadListenersEvent event)
 	{
 		event.registerReloadListener(ModShieldBase.shieldRenderer = new ShieldTileEntityRenderer(
@@ -154,9 +164,30 @@ public class Nedaire
 			ModMaterial mat = ModRegistration.RegisterMaterials.CORIUM;
 			event.addSprite(mat.getToolMat().getShieldBase().texture());
 			event.addSprite(mat.getToolMat().getShieldNoPattern().texture());
+		
+			/**
+			 * Slots
+			 */
+			
+			event.addSprite(ModSlot.BACKGROUND_STANDART);
+			event.addSprite(ModSlot.BACKGROUND_INPUT);
+			event.addSprite(ModSlot.BACKGROUND_OUPUT);
+			event.addSprite(ModSlot.BACKGROUND_BOTH);
 		}
 	}
 
+	private void registerItemColors(final ColorHandlerEvent.Item event)
+	{
+		event.getItemColors().register((stack, overlay) -> 
+		{
+			if (overlay == 0 && stack.getItem() instanceof GemItem)
+			{
+				return overlay > 0 ? -1 : GemEffects.getColor(stack);
+			}
+			return -1;
+		}, ModRegistration.RegisterItems.GEM.get());
+	}
+	
     public void gatherData(GatherDataEvent event)
     {
     	

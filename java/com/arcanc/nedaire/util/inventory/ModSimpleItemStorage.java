@@ -78,12 +78,30 @@ public class ModSimpleItemStorage implements IItemHandler, INBTSerializable<Comp
 	{
 		return items.size();
 	}
-
+	
+	public List<IItemStackAcess> getItems() 
+	{
+		return items;
+	}
+	
+	public IItemStackAcess getSlot (int slot)
+	{
+		validateSlotIndex(slot);
+		return items.get(slot);
+	}
+	
 	@Override
 	public ItemStack getStackInSlot(int slot) 
 	{
 		validateSlotIndex(slot);
 		return items.get(slot).getItemStack();
+	}
+	
+	public void setStackInSlot (@Nonnull ItemStack stack, int slot)
+	{
+		validateSlotIndex(slot);
+		items.get(slot).setItemStack(stack);
+		onInventoryChange(slot);
 	}
 
 	@Override
@@ -174,8 +192,8 @@ public class ModSimpleItemStorage implements IItemHandler, INBTSerializable<Comp
 	{
 		if(tileInv == null)
 			return;
-		tileInv.onInventoryChange(slot);
 		validateSlotIndex(slot);
+		tileInv.onInventoryChange(slot);
 		items.get(slot).onContentsChanged();
 	}
 	

@@ -8,7 +8,12 @@
  */
 package com.arcanc.nedaire.content.item;
 
+import com.arcanc.nedaire.content.item.gem.GemEffect;
+
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 
 public class ItemInterfaces 
 {
@@ -16,5 +21,15 @@ public class ItemInterfaces
 	{
 		void registerModelProperties(Item item);
 		
+	}
+	
+	public interface IGemItem
+	{
+		GemEffect getEffect();
+	}
+	
+	public interface GemAction 
+	{
+		void action (ItemStack stack, Level level, Player player); 
 	}
 }

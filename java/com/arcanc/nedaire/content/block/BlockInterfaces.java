@@ -30,6 +30,11 @@ public class BlockInterfaces
 	    {
 
 	    }
+	    
+	    default void onVimChange (int slot)
+	    {
+	    	
+	    }
 
 	    default boolean clearSlot(int slot) 
 	    {
